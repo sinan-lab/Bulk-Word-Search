@@ -1,0 +1,30 @@
+import os
+import re
+
+with os.scandir("C:/Users/SinanASKIN(ADEO)/Desktop/deneme") as tarama:
+    for belge in tarama:
+        belge = str(belge)
+        x = belge.split()
+        x = x[1].strip(">")
+        x = x.strip("'")
+
+        try:
+            with open("C:/Users/SinanASKIN(ADEO)/Desktop/deneme/"+x,"r",encoding='utf-8') as dosya:
+                d = dosya.read()
+                s=0
+                for i in range(len(d)):
+                    b = re.search("UBYPhotos", d)
+                    
+                    if b:
+                        s=s+1
+                        print("Aranan kelime "+x+" dosyasında mevcuttur.")
+                        break
+                    else:
+                        print("Aranan kelime "+x+" dosyasında bulunamadı.")
+                        break
+
+        except FileNotFoundError:
+            print("Dosya bulunamadı")
+
+
+
